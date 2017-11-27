@@ -6,7 +6,7 @@
 /*   By: jaylor <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 09:10:04 by jaylor            #+#    #+#             */
-/*   Updated: 2017/11/27 11:59:16 by jaylor           ###   ########.fr       */
+/*   Updated: 2017/11/27 17:33:53 by jaylor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int		check_dups(t_room *r, int k)
 	int i;
 
 	i = 0;
+	if (r->rooms[i] == (char*)28)
+		i++;
 	while (r->rooms[i] != 0)
 	{
 		if (ft_strcmp(r->input[k], r->rooms[i]) == 0)

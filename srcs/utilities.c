@@ -50,7 +50,7 @@ int     get_input(t_room *r, int fd)
     char    *line;
 
     r->start = r->input;
-    while (get_next_line(fd, &line) > 0)
+    while (get_next_line(0, &line) > 0)
     {
         *r->input = ft_strdup(line);
         r->input++;

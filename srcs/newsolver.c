@@ -173,6 +173,7 @@ int		ft_distance(t_room *r, int room_1, int room_2)
 	x[2] = ft_atoi(p);
 	x[3] = ft_atoi(p + ft_intlen(x[2]));
 	dist = ft_abs(x[2] - x[0]) + ft_abs(x[3] - x[1]);
+	free(x);
 	return (dist);
 }
 

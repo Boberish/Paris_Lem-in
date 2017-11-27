@@ -56,5 +56,6 @@ int		line_print(int i, int j, t_room *r, int k)
 	ft_putnbr(i);
 	ft_putchar('-');
 	ft_putstr(r->rooms[r->bpath[j]]);
+	ft_putchar(' ');
 	return (2);
 }

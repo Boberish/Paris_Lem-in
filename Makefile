@@ -6,7 +6,7 @@
 #    By: jaylor <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 09:35:25 by jaylor            #+#    #+#              #
-#    Updated: 2017/11/27 13:20:57 by jaylor           ###   ########.fr        #
+#    Updated: 2017/11/27 17:50:38 by jaylor           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = lem-in
@@ -23,6 +23,7 @@ FILESO =	parse2.o \
 			make_map.o \
 			print_ants.o\
 			newsolver.o\
+			alloc_wrap.o \
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libftprintf.a
