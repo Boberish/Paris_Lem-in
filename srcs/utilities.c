@@ -51,12 +51,13 @@ int     get_input(t_room *r, int fd)
 
     r->start = r->input;
     while (get_next_line(0, &line) > 0)
-    {
+   {
         *r->input = ft_strdup(line);
         r->input++;
         free(line);
     }
-    *r->input = 0;
+//	free(line);
+	*r->input = 0;
     r->input = r->start;
 	if (r->input[0] == 0)
 	{
@@ -68,7 +69,7 @@ int     get_input(t_room *r, int fd)
 
 int		ft_error_check(t_room *r)
 {
-	if (r->end == 0)
+	if (r->end == -1)
 		{
 			ft_putstr_fd("Major error, no end room", 2);
 			return (-1);

@@ -1,0 +1,34 @@
+malloc(24) = 0x7f8ea1c025e0
+malloc(2) = 0x7f8ea1c02600
+malloc(9) = 0x7f8ea1c02610
+free(0x7f8ea1c02600)
+malloc(8) = 0x7f8ea1c02600
+malloc(1) = 0x7f8ea1c02620
+free(0x7f8ea1c02610)
+free(0x7f8ea1c02600)
+malloc(11) = 0x7f8ea1c02600
+malloc(10) = 0x7f8ea1c02610
+malloc(1) = 0x7f8ea1c02630
+free(0x7f8ea1c02600)
+free(0x7f8ea1c02610)
+malloc(11) = 0x7f8ea1c02610
+malloc(6) = 0x7f8ea1c02600
+malloc(5) = 0x7f8ea1c02640
+free(0x7f8ea1c02610)
+free(0x7f8ea1c02600)
+malloc(15) = 0x7f8ea1c02600
+free(0x7f8ea1c02640)
+malloc(8) = 0x7f8ea1c02640
+malloc(7) = 0x7f8ea1c02610
+free(0x7f8ea1c02600)
+free(0x7f8ea1c02640)
+malloc(11) = 0x7f8ea1c02640
+free(0x7f8ea1c02610)
+malloc(10) = 0x7f8ea1d00000
+malloc(1) = 0x7f8ea1d00010
+free(0x7f8ea1c02640)
+free(0x7f8ea1d00000)
+malloc(1) = 0x7f8ea1e00000
+free(0x7f8ea1d00000)
+lem-in(39599,0x7fffa1d613c0) malloc: *** error for object 0x7f8ea1d00000: pointer being freed was not allocated
+*** set a breakpoint in malloc_error_break to debug

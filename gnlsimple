@@ -1,0 +1,33 @@
+malloc(24) = 0x7fe1c6c025e0
+malloc(2) = 0x7fe1c6c02600
+malloc(9) = 0x7fe1c6c02610
+free(0x7fe1c6c02600)
+malloc(8) = 0x7fe1c6c02600
+malloc(1) = 0x7fe1c6c02620
+free(0x7fe1c6c02610)
+free(0x7fe1c6c02600)
+malloc(11) = 0x7fe1c6c02600
+malloc(10) = 0x7fe1c6c02610
+malloc(1) = 0x7fe1c6c02630
+free(0x7fe1c6c02600)
+free(0x7fe1c6c02610)
+malloc(11) = 0x7fe1c6c02610
+malloc(6) = 0x7fe1c6c02600
+malloc(5) = 0x7fe1c6c02640
+free(0x7fe1c6c02610)
+free(0x7fe1c6c02600)
+malloc(15) = 0x7fe1c6c02600
+free(0x7fe1c6c02640)
+malloc(8) = 0x7fe1c6c02640
+malloc(7) = 0x7fe1c6c02610
+free(0x7fe1c6c02600)
+free(0x7fe1c6c02640)
+malloc(11) = 0x7fe1c6c02640
+free(0x7fe1c6c02610)
+malloc(10) = 0x7fe1c6c02610
+malloc(1) = 0x7fe1c6c02600
+free(0x7fe1c6c02640)
+free(0x7fe1c6c02610)
+malloc(1) = 0x7fe1c6c02610
+free(0x7fe1c6c02610)
+FAIL: 4 mallocs not freed

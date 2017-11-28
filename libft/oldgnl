@@ -6,7 +6,7 @@
 /*   By: jaylor <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 13:08:16 by jaylor            #+#    #+#             */
-/*   Updated: 2017/11/28 13:47:50 by jaylor           ###   ########.fr       */
+/*   Updated: 2017/01/27 15:02:25 by jaylor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,36 +52,51 @@ int		ft_buffline(t_stat *beg, char *buff, char **line)
 	return (0);
 }
 
+void	conditions1(t_stat *beg, char *buff)
+{
+	if (!(beg->rest))
+		beg->rest = ft_strdup(buff);
+	else
+	{
+		beg->tmp = beg->rest;
+		beg->rest = ft_strjoin(beg->tmp, buff);
+		if (*beg->tmp)
+			free(beg->tmp);
+	}
+}
+
+void	conditions2(t_stat *beg, char *buff)
+{
+	beg->tmp = beg->rest;
+	beg->rest = ft_strjoin(beg->tmp, buff);
+	if (*beg->tmp)
+		free(beg->tmp);
+}
 
 int		get_next_line(int fd, char **line)
 {
 	char			buff[BUFF_SIZE + 1];
-	static t_stat	beg;
+	static t_stat	*beg;
 
-	if (ft_begline(&beg, line) == 1)
+	if (!(beg))
+		beg = ft_memalloc(sizeof(t_stat));
+	if (ft_begline(beg, line) == 1)
 		return (1);
-	while ((beg.rl = read(fd, buff, BUFF_SIZE)) || beg.rest)
+	while ((beg->rl = read(fd, buff, BUFF_SIZE)) || beg->rest)
 	{
-		if ((int)beg.rl == -1)
+		if ((int)beg->rl == -1)
 			return (-1);
-		buff[beg.rl] = '\0';
-		if (ft_strchr(buff, '\n') || beg.rl < BUFF_SIZE)
+		buff[beg->rl] = '\0';
+		if (ft_strchr(buff, '\n') || beg->rl < BUFF_SIZE)
 		{
-			if (beg.rest)
+			if (beg->rest)
 			{
-				beg.tmp = beg.rest;
-				beg.rest = ft_strjoin(beg.tmp, buff);
-				return (ft_begline(&beg, line));
+				conditions2(beg, buff);
+				return (ft_begline(beg, line));
 			}
-			return (ft_buffline(&beg, buff, line));
+			return (ft_buffline(beg, buff, line));
 		}
-		if (!(beg.rest))
-			beg.rest = ft_strdup(buff);
-		else
-		{
-			beg.tmp = beg.rest;
-			beg.rest = ft_strjoin(beg.tmp, buff);
-		}
+		conditions1(beg, buff);
 	}
 	return (0);
 }

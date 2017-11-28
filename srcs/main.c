@@ -6,7 +6,7 @@
 /*   By: jaylor <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 09:10:04 by jaylor            #+#    #+#             */
-/*   Updated: 2017/11/27 18:13:14 by jaylor           ###   ########.fr       */
+/*   Updated: 2017/11/28 15:32:21 by jaylor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,36 @@ int main(int argc, char **argv)
 	t_astar	*a;
 	int		fd;
 	
-/*	fd = open(argv[1], O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
 	a = (t_astar*)malloc(sizeof(t_astar));
 	r = (t_room*)malloc(sizeof(t_room));
 	init_rooms(r);
+	//ft_putstr("init rooms finished");
 	if (get_input(r, fd) == -1)
 		return (-1);
+	//ft_putstr("get input finished");
 	if (get_ants(r) == -1)
 		return (-1);
+	//ft_putstr("get ants finished");
 	if	(add_con_to_map(r) == -1)
 		return (-1);
+	//ft_putstr("add con to map finished");
 	print_input(r);
+	//ft_putstr("print input finished");
 	ft_Astar_init(r, a);
 	if (ft_A_star(r,a) == -1)
 		return (-1);
 	print_ants(r);
-	free_stuff(r, a);		*/
+	free_stuff(r, a);		/*
 	char *line;
 
-	while (get_next_line(0, &line) > 0)
+	while (get_next_line(fd, &line) > 0)
 	{
 		ft_putstr(line);
+		ft_putchar('\n');
 		free(line);
 	}
-	free(line);	
+	free(line);	*/
 	return (0);
 }
 
