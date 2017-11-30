@@ -6,13 +6,13 @@
 #    By: jaylor <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 09:35:25 by jaylor            #+#    #+#              #
-#    Updated: 2017/11/26 13:10:26 by jaylor           ###   ########.fr        #
+#    Updated: 2017/11/30 12:05:02 by jaylor           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libftprintf.a
 HEADERS = includes
 
-CFLAGS += -Wall -Werror -Wextra -g
+CFLAGS += -Wall -Werror -Wextra
 CFLAGS += -I$(HEADERS)
 
 FILESO =	ft_putchar.o \

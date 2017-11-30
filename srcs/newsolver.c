@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   newsolver.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaylor <jaylor@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/29 09:10:04 by jaylor            #+#    #+#             */
+/*   Updated: 2017/11/30 11:51:37 by jaylor           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lemin.h"
 
-
-int		ft_Astar_init(t_room *r, t_astar *a)
+int		ft_astar_init(t_room *r, t_astar *a)
 {
 	a->x = 0;
 	a->y = 0;
 	a->z = 0;
 	a->current = 0;
-	a->neighbor = 0;
+	a->neb = 0;
 	a->closed_set = (int*)malloc(sizeof(int) * 1000000);
 	ft_memset(a->closed_set, -1, 1000000);
 	a->open_set = (int*)malloc(sizeof(int) * 1000000);
@@ -26,7 +37,7 @@ int		ft_Astar_init(t_room *r, t_astar *a)
 	return (0);
 }
 
-int		ft_A_star(t_room *r, t_astar *a)
+int		ft_a_star(t_room *r, t_astar *a)
 {
 	while (a->open_set[0] != -1)
 	{
@@ -40,34 +51,40 @@ int		ft_A_star(t_room *r, t_astar *a)
 		}
 		ft_remove(a->current, a->open_set);
 		ft_add(a->current, a->closed_set);
-		while (1)
-		{	
-			(a->z == 0) ? a->x++ : a->y++;
-			while (a->x < r->r_len - 1 && a->y < r->r_len - 1 && r->map[a->x][a->y] == '0')
-				(a->z == 0) ? a->x++ : a->y++;
-			if (a->x > r->r_len - 1 || a->y > r->r_len - 1)
-				break;
-			if (r->map[a->x][a->y] != '1')
-				break;
-			a->neighbor = (a->z == 0) ?	a->x : a->y;
-			if (ft_in(a->neighbor, a->closed_set) == 1)
-				continue;
-			if (ft_in(a->neighbor, a->open_set) == 0)
-				ft_add(a->neighbor, a->open_set);
-			a->ten_gscore = a->gscore[a->current] + ft_distance(r, a->current, a->neighbor);
-			if (a->ten_gscore >= a->gscore[a->neighbor])
-				continue;
-			a->came_from[a->neighbor] = a->current;
-			a->gscore[a->neighbor] = a->ten_gscore;
-			a->fscore[a->neighbor] = a->gscore[a->neighbor] + ft_distance(r, a->neighbor, r->end);
-			
-		}
+		ft_a_star2(r, a);
 		a->y = 0;
 		a->x = 0;
 		a->z = (a->z == 0) ? 1 : 0;
-	}	
-	ft_putstr_fd("Major error, no solution to map", 2);
+	}
+	ft_putstr_fd("Major error, no solution to map\n", 2);
 	return (-1);
+}
+
+void	ft_a_star2(t_room *r, t_astar *a)
+{
+	while (1)
+	{
+		(a->z == 0) ? a->x++ : a->y++;
+		while (a->x < r->r_len - 1 && a->y < r->r_len - 1
+			&& r->map[a->x][a->y] == '0')
+			(a->z == 0) ? a->x++ : a->y++;
+		if (a->x > r->r_len - 1 || a->y > r->r_len - 1)
+			break ;
+		if (r->map[a->x][a->y] != '1')
+			break ;
+		a->neb = (a->z == 0) ? a->x : a->y;
+		if (ft_in(a->neb, a->closed_set) == 1)
+			continue;
+		if (ft_in(a->neb, a->open_set) == 0)
+			ft_add(a->neb, a->open_set);
+		a->ten_gscore = a->gscore[a->current] +
+		ft_distance(r, a->current, a->neb);
+		if (a->ten_gscore >= a->gscore[a->neb])
+			continue;
+		a->came_from[a->neb] = a->current;
+		a->gscore[a->neb] = a->ten_gscore;
+		a->fscore[a->neb] = a->gscore[a->neb] + ft_distance(r, a->neb, r->end);
+	}
 }
 
 int		*ft_reconstruct(int *came_from, int current)
@@ -91,8 +108,8 @@ int		ft_lowest(int *array, int *inthis)
 	int i;
 	int low;
 	int ret;
-	
-	low = 2147483647;	
+
+	low = 2147483647;
 	i = 0;
 	while (inthis[i] != -1)
 	{
@@ -102,79 +119,6 @@ int		ft_lowest(int *array, int *inthis)
 			ret = inthis[i];
 		}
 		i++;
-	}	
+	}
 	return (ret);
 }
-
-int		ft_remove(int rem, int *array)
-{
-	int i;
-
-	i = 0;
-	while (array[i] != rem && array[i] != -1)
-		i++;
-	if (array[i] == -1)
-		return (-1);
-	while (array[i + 1] != -1)
-	{
-		array[i] = array[i + 1];
-		i++;
-	}
-	array[i] = -1;
-	return (1);
-}
-
-
-int		ft_add(int add, int *array)
-{
-	int i;
-
-	i = 0;
-	while (array[i] != -1)
-		i++;
-	array[i] = add;
-	return (0);
-}
-
-int		ft_in(int num, int *array)
-{
-	int i;
-
-	i = 0;
-	while (array[i] != num && array[i] != -1)
-		i++;
-	if (array[i] == -1)
-		return (0);
-	else
-		return (1);
-}
-
-int		ft_distance(t_room *r, int room_1, int room_2)
-{
- 	int i;
-    char *p;
-    int *x;
-    int dist;
-	int j;
-
-    i = 0;
-	j = 0;
-    x = (int*)malloc(sizeof(int) * 4);
-	while (r->rooms[room_1][j] != ' ')
-		j++;
-	p = &r->rooms[room_1][j + 1];
-		
-	x[0] = ft_atoi(p);
-	x[1] = ft_atoi(p + ft_intlen(x[0]));
-	j = 0;
-	while (r->rooms[room_2][j] != ' ')
-		j++;
-	p = &r->rooms[room_2][j + 1];
-	x[2] = ft_atoi(p);
-	x[3] = ft_atoi(p + ft_intlen(x[2]));
-	dist = ft_abs(x[2] - x[0]) + ft_abs(x[3] - x[1]);
-	free(x);
-	return (dist);
-}
-
-

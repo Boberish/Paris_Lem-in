@@ -6,15 +6,15 @@
 /*   By: jaylor <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 13:28:45 by jaylor            #+#    #+#             */
-/*   Updated: 2016/11/30 11:05:22 by jaylor           ###   ########.fr       */
+/*   Updated: 2017/11/30 10:21:47 by jaylor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	const char *a;
-	const char *b;
-	int i;
+	const char	*a;
+	const char	*b;
+	int			i;
 
 	a = s1;
 	b = s2;

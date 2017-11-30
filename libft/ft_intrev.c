@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*   ft_intrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaylor <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jaylor <jaylor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 11:05:52 by jaylor            #+#    #+#             */
-/*   Updated: 2017/11/26 13:12:15 by jaylor           ###   ########.fr       */
+/*   Updated: 2017/11/30 10:51:27 by jaylor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_intrev(int *s)
+void	ft_intrev(int *s)
 {
-    int    temp;
-    int    *e;
-    int     len;
+	int	temp;
+	int	*e;
+	int	len;
 
-    len = ft_int_array_len(s);
-    e = s + len - 1;
-    while (s < e)
-    {
-        temp = *s;
-        *s = *e;
-        *e = temp;
-        s++;
-        e--;
-    }
+	len = ft_int_array_len(s);
+	e = s + len - 1;
+	while (s < e)
+	{
+		temp = *s;
+		*s = *e;
+		*e = temp;
+		s++;
+		e--;
+	}
 }
-

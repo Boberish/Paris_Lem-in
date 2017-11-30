@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_intchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaylor <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jaylor <jaylor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 18:26:25 by jaylor            #+#    #+#             */
-/*   Updated: 2017/09/07 11:34:28 by jaylor           ###   ########.fr       */
+/*   Updated: 2017/11/30 10:52:37 by jaylor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	ft_intchr(int *array, int match, int len)
 {
-	int i;
+	int	i;
+
 	i = 0;
-	
-		while (len-- && *array != -1)
-		{
-			if (array[i] == match)
-				return (1);
-			i++;
-		}
+	while (len-- && *array != -1)
+	{
+		if (array[i] == match)
+			return (1);
+		i++;
+	}
 	return (0);
 }

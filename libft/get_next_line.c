@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaylor <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jaylor <jaylor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/23 13:08:16 by jaylor            #+#    #+#             */
-/*   Updated: 2017/11/28 13:47:50 by jaylor           ###   ########.fr       */
+/*   Updated: 2017/11/30 10:58:58 by jaylor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,16 @@ int		ft_buffline(t_stat *beg, char *buff, char **line)
 	return (0);
 }
 
+void	gnl2(t_stat *beg, char *buff)
+{
+	if (!(beg->rest))
+		beg->rest = ft_strdup(buff);
+	else
+	{
+		beg->tmp = beg->rest;
+		beg->rest = ft_strjoin(beg->tmp, buff);
+	}
+}
 
 int		get_next_line(int fd, char **line)
 {
@@ -75,13 +85,7 @@ int		get_next_line(int fd, char **line)
 			}
 			return (ft_buffline(&beg, buff, line));
 		}
-		if (!(beg.rest))
-			beg.rest = ft_strdup(buff);
-		else
-		{
-			beg.tmp = beg.rest;
-			beg.rest = ft_strjoin(beg.tmp, buff);
-		}
+		gnl2(&beg, buff);
 	}
 	return (0);
 }

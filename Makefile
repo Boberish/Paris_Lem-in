@@ -6,14 +6,13 @@
 #    By: jaylor <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 09:35:25 by jaylor            #+#    #+#              #
-#    Updated: 2017/11/28 14:50:00 by jaylor           ###   ########.fr        #
+#    Updated: 2017/11/30 12:05:33 by jaylor           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = lem-in
 HEADERS = includes
 
-CFLAGS +=  -g
-CFLAGS += -I$(HEADERS) 
+CFLAGS += -I$(HEADERS) -Wall -Werror -Wextra
 
 FILESO =	parse2.o \
 			parse.o \
